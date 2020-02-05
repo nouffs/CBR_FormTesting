@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <a href="index.xhtml"></a>
+    </h:head>
+    <h:body>
+        <h:form>
+        <h:commandButton value="(First) Click Here To Create a new Table" action="#{test.createTable()}"> </h:commandButton>
+       <br/>
+        <h:outputText value="After creating your table and making sure the table TEST_TABLE is created, test the following action:"></h:outputText>
+              <br/>
+             ID: <h:inputText value="#{test.id}"></h:inputText>   <br/>
+            Name: <h:inputText value="#{test.name}"></h:inputText>   <br/>
+            Address: <h:inputText value="#{test.address}"></h:inputText>   <br/>
+            <h:commandButton value="Click Here to insert test row in your table" action="#{test.insertData()}"> </h:commandButton>
+
+        </h:form>
+    </h:body>
+</html>
+
