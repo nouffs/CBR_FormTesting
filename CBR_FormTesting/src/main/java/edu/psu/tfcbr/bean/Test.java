@@ -5,13 +5,7 @@
  */
 package edu.psu.tfcbr.bean;
 
-import edu.psu.tfcbr.db.DBManager;
 import edu.psu.tfcbr.db.TestDAO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
