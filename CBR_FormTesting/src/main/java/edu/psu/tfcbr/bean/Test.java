@@ -5,6 +5,7 @@
  */
 package edu.psu.tfcbr.bean;
 
+import edu.psu.ftcbr.utilities.TestFormSubmit;
 import edu.psu.tfcbr.db.TestDAO;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -27,7 +28,9 @@ public class Test {
 public void createTable(){
 
     //calling the DAO to create the table
- TestDAO.createTable();
+ //TestDAO.createTable();
+    TestFormSubmit test = new TestFormSubmit();
+ test.testGitHub();
 }   
 
 
