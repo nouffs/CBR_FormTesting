@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.psu.tfcbr.bean;
+package edu.psu.ftcbr.bean;
 
 import edu.psu.ftcbr.utilities.TestFormSubmit;
 import edu.psu.tfcbr.db.TestDAO;

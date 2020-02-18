@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.psu.tfcbr.bean;
+package edu.psu.ftcbr.bean;
 
 import edu.psu.ftcbr.utilities.HttpHandling;
 import edu.psu.ftcbr.valueobject.Field;
@@ -55,32 +55,32 @@ public class Fetch {
 
         testcases = new ArrayList<TestCase>();
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept empty values");
+        onecase.setFieldName("Verify that the field does not accept empty values");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept space only Input ");
+        onecase.setFieldName("Verify that the field does not accept space only Input ");
         onecase.setCasePassed(false);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept line break input");
+        onecase.setFieldName("Verify that the field does not accept line break input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept special characters input");
+        onecase.setFieldName("Verify that the field does not accept special characters input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept digits input");
+        onecase.setFieldName("Verify that the field does not accept digits input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("verify that the field accepts letters input");
+        onecase.setFieldName("verify that the field accepts letters input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
@@ -107,32 +107,32 @@ public class Fetch {
 
         testcases = new ArrayList<TestCase>();
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept empty values");
+        onecase.setFieldName("Verify that the field does not accept empty values");
         onecase.setCasePassed(false);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept space only Input ");
+        onecase.setFieldName("Verify that the field does not accept space only Input ");
         onecase.setCasePassed(false);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept line break input");
+        onecase.setFieldName("Verify that the field does not accept line break input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept special characters input");
+        onecase.setFieldName("Verify that the field does not accept special characters input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept digits input");
+        onecase.setFieldName("Verify that the field does not accept digits input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("verify that the field accepts letters input");
+        onecase.setFieldName("verify that the field accepts letters input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
@@ -158,22 +158,22 @@ public class Fetch {
 
         testcases = new ArrayList<TestCase>();
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept empty values");
+        onecase.setFieldName("Verify that the field does not accept empty values");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept space only input");
+        onecase.setFieldName("Verify that the field does not accept space only input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept line break input");
+        onecase.setFieldName("Verify that the field does not accept line break input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field accepts emails written in a valid format (xxx@xxx.com)");
+        onecase.setFieldName("Verify that the field accepts emails written in a valid format (xxx@xxx.com)");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
@@ -200,31 +200,31 @@ public class Fetch {
 
         testcases = new ArrayList<TestCase>();
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept empty values");
+        onecase.setFieldName("Verify that the field does not accept empty values");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field does not accept space only input");
+        onecase.setFieldName("Verify that the field does not accept space only input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText(" Verify that the field does not accept line break input");
+        onecase.setFieldName(" Verify that the field does not accept line break input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field accepts special characters input");
+        onecase.setFieldName("Verify that the field accepts special characters input");
         onecase.setCasePassed(false);
         testcases.add(onecase);
 
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field accepts digits input");
+        onecase.setFieldName("Verify that the field accepts digits input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
         onecase = new TestCase();
-        onecase.setCaseText("Verify that the field accepts letters input");
+        onecase.setFieldName("Verify that the field accepts letters input");
         onecase.setCasePassed(true);
         testcases.add(onecase);
 

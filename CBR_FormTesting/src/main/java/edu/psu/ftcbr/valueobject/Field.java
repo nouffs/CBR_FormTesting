@@ -6,6 +6,7 @@
 package edu.psu.ftcbr.valueobject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Field {
@@ -15,7 +16,7 @@ public class Field {
  private String letters;
  private String digits;
  private String chars;
- private ArrayList<TestCase> testCases = new ArrayList<TestCase>();
+ private List<TestCase> testCases = new ArrayList<TestCase>();
 
  
  
@@ -112,14 +113,14 @@ public class Field {
     /**
      * @return the testCases
      */
-    public ArrayList<TestCase> getTestCases() {
+    public List<TestCase> getTestCases() {
         return testCases;
     }
 
     /**
      * @param testCases the testCases to set
      */
-    public void setTestCases(ArrayList<TestCase> testCases) {
+    public void setTestCases(List<TestCase> testCases) {
         this.testCases = testCases;
     }
 

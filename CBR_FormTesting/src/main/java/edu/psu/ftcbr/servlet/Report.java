@@ -100,7 +100,7 @@ else{
     table.setHeaderRows(1);
    
        for (int j = 0 ; j < fields.get(i).getTestCases().size(); j ++){
-         insertCell(table, fields.get(i).getTestCases().get(j).getCaseText(), Element.ALIGN_LEFT, 3, bf12,false);
+         insertCell(table, fields.get(i).getTestCases().get(j).getFieldName(), Element.ALIGN_LEFT, 3, bf12,false);
       insertCell(table, fields.get(i).getTestCases().get(j).isCasePassed()? "PASS":"FAIL", Element.ALIGN_CENTER, 3, fields.get(i).getTestCases().get(j).isCasePassed()? passFont:failFont ,false);
        }
    
