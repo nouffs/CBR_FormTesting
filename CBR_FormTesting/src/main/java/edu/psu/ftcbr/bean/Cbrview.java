@@ -48,8 +48,17 @@ field = new Field();
         testCase.setCaseId("6");
         testCase.setDescription("just testing insert");
         testCase.setValue("3453@");
-    CBR.reuse(testCase);
+        //CBR.reuse(testCase);
+    }
     
+    public void insertTestCaseInCSV(String ID, String fieldName, String Desc, String testData){
+        TestCase testCase = new TestCase();
+        testCase.setFieldName(fieldName);
+        testCase.setCaseId(ID);
+        testCase.setDescription(Desc);
+        testCase.setValue(testData);
+        //CBR.retain(testCase);
+        CSVReadWrite.insertCase(testCase);
     }
 
     /**
@@ -66,10 +75,29 @@ field = new Field();
         this.field = field;
     }
 
-
-
+// to test Retain function
+ public void callRetainTest(){
+    TestCase testcase1 = new TestCase();  
+    TestCase testcase2 = new TestCase();  
+    List<TestCase> testRetain = new ArrayList<TestCase>();
+    testcase1.setCaseId("100");
+    testcase1.setFieldName("testEbt");
+    testcase1.setDescription("testEbt");
+    testcase1.setValue("testEbt");
+    testRetain.add(testcase1);
+    
+    testcase2.setCaseId("100");
+    testcase2.setFieldName("testEbt2");
+    testcase2.setDescription("testEbt2");
+    testcase2.setValue("testEbt2");
+    testRetain.add(testcase2);
+    
+    CBR cbr = new CBR();
+    cbr.retain(testRetain, "NewField");
+ }
     
     
+   
     
 
 }

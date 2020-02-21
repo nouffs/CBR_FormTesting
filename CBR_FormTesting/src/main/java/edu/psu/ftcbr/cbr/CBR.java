@@ -5,6 +5,7 @@
  */
 package edu.psu.ftcbr.cbr;
 
+import edu.psu.ftcbr.bean.Cbrview;
 import edu.psu.ftcbr.utilities.CSVReadWrite;
 import edu.psu.ftcbr.valueobject.TestCase;
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class CBR {
 
     public static void reuse(TestCase onecase) {
         
-        CSVReadWrite.insertCase(onecase);
+       // Ebtesam: I moved this line into retain 
+       //CSVReadWrite.insertCase(onecase);
     }
     
     
@@ -38,7 +40,23 @@ public class CBR {
         return similarCases;
     }
 //store new test case
-    public void retain() {
+    public void retain(List<TestCase> newFieldCases, String fieldName) {
+        String ID, name, desc, testData;
+        Cbrview cbrView = new Cbrview();
+        CSVReadWrite read = new CSVReadWrite();
+        int csvSize = read.readTestCasesFromCSV().size();
+        int size = newFieldCases.size();
+        for (int i = 0; i < size; i++)
+        {
+            ID = csvSize + i + 1 + "";
+            name= fieldName;
+            desc = newFieldCases.get(i).getDescription();
+            testData = newFieldCases.get(i).getValue();
+            cbrView.insertTestCaseInCSV(ID,name,desc,testData);
+        
+        }
+        //CSVReadWrite.insertCase(onecase);
+    
     }
 
 }

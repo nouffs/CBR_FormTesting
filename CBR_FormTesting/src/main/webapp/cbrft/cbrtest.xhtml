@@ -22,9 +22,9 @@
           <h:inputText value="#{cbrview.field.name}"></h:inputText>
           <h:commandButton action="#{cbrview.getCasesFromCBR()}" value="click here to retrieve all cases from csv"></h:commandButton>
           
-          <h:commandButton action="#{cbrview.insertTestCaseInCSV()}" value="click here to insert a test case in the csv"></h:commandButton>
-
-          
+          <h:commandButton action="#{cbrview.callRetainTest()}" value="click here to insert a test case in the csv"></h:commandButton> 
+       
+      
           <p:dataTable var="caseObj" value="#{cbrview.field.testCases}" id="cases" >
                      
 
