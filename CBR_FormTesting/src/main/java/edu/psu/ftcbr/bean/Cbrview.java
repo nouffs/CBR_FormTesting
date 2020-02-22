@@ -26,23 +26,33 @@ import javax.servlet.http.HttpSession;
 
 public class Cbrview {
 
-     private Field field;
+    private Field field;
+    private String errorMessage;
+    private boolean showError;
 
-public Cbrview(){
-field = new Field();
+    private String notFoundMessage;
+    private boolean showNotFound;
+
+    public Cbrview() {
+        field = new Field();
+    }
+
+    //gets the entire csv file
+    public void getCasesFromCBR() {
+
+        getField().setTestCases(CBR.retrieve(getField().getName()));
+if (field.getTestCases().size() == 0){
+notFoundMessage = "Sorry, no identical or similar cases were found in the repository!";
+showNotFound = true;
 }
 
-
-
-        //gets the entire csv file
-    public void getCasesFromCBR(){
-         
-       
-        field.setTestCases(CBR.retrieve(getField().getName()));
-       
+else {
+showNotFound = false;
+notFoundMessage = "";
+}
     }
-    
-    public void insertTestCaseInCSV(){
+
+    public void insertTestCaseInCSV() {
         TestCase testCase = new TestCase();
         testCase.setFieldName("PhoneNo");
         testCase.setCaseId("6");
@@ -50,8 +60,8 @@ field = new Field();
         testCase.setValue("3453@");
         //CBR.reuse(testCase);
     }
-    
-    public void insertTestCaseInCSV(String ID, String fieldName, String Desc, String testData){
+
+    public void insertTestCaseInCSV(String ID, String fieldName, String Desc, String testData) {
         TestCase testCase = new TestCase();
         testCase.setFieldName(fieldName);
         testCase.setCaseId(ID);
@@ -76,28 +86,82 @@ field = new Field();
     }
 
 // to test Retain function
- public void callRetainTest(){
-    TestCase testcase1 = new TestCase();  
-    TestCase testcase2 = new TestCase();  
-    List<TestCase> testRetain = new ArrayList<TestCase>();
-    testcase1.setCaseId("100");
-    testcase1.setFieldName("testEbt");
-    testcase1.setDescription("testEbt");
-    testcase1.setValue("testEbt");
-    testRetain.add(testcase1);
+    public void callRetainTest() {
+        TestCase testcase1 = new TestCase();
+        TestCase testcase2 = new TestCase();
+        List<TestCase> testRetain = new ArrayList<TestCase>();
+        testcase1.setCaseId("100");
+        testcase1.setFieldName("testEbt");
+        testcase1.setDescription("testEbt");
+        testcase1.setValue("testEbt");
+        testRetain.add(testcase1);
+
+        testcase2.setCaseId("100");
+        testcase2.setFieldName("testEbt2");
+        testcase2.setDescription("testEbt2");
+        testcase2.setValue("testEbt2");
+        testRetain.add(testcase2);
+
+        CBR cbr = new CBR();
+        cbr.retain(testRetain, "NewField");
+    }
+
+    /**
+     * @return the errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    /**
+     * @param errorMessage the errorMessage to set
+     */
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    /**
+     * @return the showError
+     */
+    public boolean isShowError() {
+        return showError;
+    }
+
+    /**
+     * @param showError the showError to set
+     */
+    public void setShowError(boolean showError) {
+        this.showError = showError;
+    }
+
+    /**
+     * @return the notFoundMessage
+     */
+    public String getNotFoundMessage() {
+        return notFoundMessage;
+    }
+
+    /**
+     * @param notFoundMessage the notFoundMessage to set
+     */
+    public void setNotFoundMessage(String notFoundMessage) {
+        this.notFoundMessage = notFoundMessage;
+    }
+
+    /**
+     * @return the showNotFound
+     */
+    public boolean isShowNotFound() {
+        return showNotFound;
+    }
+
+    /**
+     * @param showNotFound the showNotFound to set
+     */
+    public void setShowNotFound(boolean showNotFound) {
+        this.showNotFound = showNotFound;
+    }
     
-    testcase2.setCaseId("100");
-    testcase2.setFieldName("testEbt2");
-    testcase2.setDescription("testEbt2");
-    testcase2.setValue("testEbt2");
-    testRetain.add(testcase2);
-    
-    CBR cbr = new CBR();
-    cbr.retain(testRetain, "NewField");
- }
-    
-    
-   
     
 
 }

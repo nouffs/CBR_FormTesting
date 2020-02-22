@@ -15,13 +15,29 @@ public class CBR {
 
     
     //Will return similar cases
-    public static List<TestCase> retrieve(String name) {
-        
+    public static List<TestCase> retrieve(String fieldName) {
+
+        List<TestCase> allCases = new ArrayList<TestCase>();
+
+        allCases = CSVReadWrite.readTestCasesFromCSV();
+
         List<TestCase> similarCases = new ArrayList<TestCase>();
+        int lastInserted=-1;
+        for (int i = 0; i < allCases.size(); i++) {
+            if (allCases.get(i).getFieldName().trim().equals(fieldName)) {
+                similarCases.add(allCases.get(i));
+                lastInserted++;
+                similarCases.get(lastInserted).setSimilarity(1);
+            }
+
+        }
         
-        similarCases = CSVReadWrite.readTestCasesFromCSV();
-        
-        
+        if (similarCases.size() == 0){
+           similarCases.addAll(revise(fieldName));
+           
+          if (similarCases.size() > 0)
+              retain(similarCases, fieldName);
+        }
         return similarCases;
     }
 
@@ -33,14 +49,14 @@ public class CBR {
     
     
    //Will return less similar cases
-    public List<TestCase> revise() {
+    public static List<TestCase> revise(String fieldName) {
         List<TestCase> similarCases = new ArrayList<TestCase>();
         
         
         return similarCases;
     }
 //store new test case
-    public void retain(List<TestCase> newFieldCases, String fieldName) {
+    public static void retain(List<TestCase> newFieldCases, String fieldName) {
         String ID, name, desc, testData;
         Cbrview cbrView = new Cbrview();
         CSVReadWrite read = new CSVReadWrite();

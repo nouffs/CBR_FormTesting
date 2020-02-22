@@ -10,46 +10,68 @@
         <a href="cbrtest.xhtml"></a>
         <h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>
 
+
+
+
+
     </h:head>
     <h:body >
         <h:form prependId="false" >
-          
-         
-                <div class="title">
-                    <h1>CBR TESTING</h1>
+
+
+            <div class="title">
+                <h1>CBR TESTING</h1>                </div>
+
+            <div class="container">
+
+                <div class="row body">
+
+
+
+                    <div class="ui-g">
+
+                        <div class="ui-g-12 ui-md-6 ui-lg-4"> *Please be informed that the system is case sensitive     </div>
+                        <div class="ui-g-12 ui-md-8 ui-lg-8">  <p:inputText style="min-width:400px"   id="fieldInput" value="#{cbrview.field.name}" placeholder="PLEASE INSERT THE FIELD'S NAME*"  /> &nbsp;&nbsp;&nbsp;
+                            <p:commandButton action="#{cbrview.getCasesFromCBR()}" value="Get Test Cases!" update="@form"><p:ajax event="click" process="@form"></p:ajax></p:commandButton>  </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                    </div>
+
+                    <br/>
+
+                    <p:dataTable var="caseObj" value="#{cbrview.field.testCases}" id="cases" rendered="#{cbrview.field.testCases.size() > 0}" scrollable="true" scrollHeight="250">
+
+
+                        <p:column headerText="CASE ID:">
+                            <h:outputText value="#{caseObj.caseId}" />
+                        </p:column>
+
+                        <p:column headerText="FIELD NAME">
+                            <h:outputText value="#{caseObj.fieldName}" />
+                        </p:column>
+
+                        <p:column headerText="CASE DESCRIPTION">
+                            <h:outputText value="#{caseObj.description}" />
+                        </p:column>
+
+                        <p:column headerText="CASE's VALUE">
+                            <h:outputText value="#{caseObj.value}" />
+                        </p:column>
+                        <p:column headerText="Similarity%">
+                            <h:outputText value="#{caseObj.similarity*100}%" />
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <h:panelGroup rendered="#{cbrview.showNotFound}">
+
+                        <p:outputLabel value="#{cbrview.notFoundMessage}"></p:outputLabel>
+                    </h:panelGroup>
                 </div>
-          PLEASE INSERT THE FIELD'S NAME: 
-          <h:inputText value="#{cbrview.field.name}"></h:inputText>
-          <h:commandButton action="#{cbrview.getCasesFromCBR()}" value="click here to retrieve all cases from csv"></h:commandButton>
-          
-          <h:commandButton action="#{cbrview.callRetainTest()}" value="click here to insert a test case in the csv"></h:commandButton> 
-       
-      
-          <p:dataTable var="caseObj" value="#{cbrview.field.testCases}" id="cases" >
-                     
-
-                            <p:column headerText="CASE ID:">
-                                <h:outputText value="#{caseObj.caseId}" />
-                            </p:column>
-
-                            <p:column headerText="FIELD NAME">
-                                <h:outputText value="#{caseObj.fieldName}" />
-                            </p:column>
-
-                            <p:column headerText="CASE DESCRIPTION">
-                                <h:outputText value="#{caseObj.description}" />
-                            </p:column>
-
-                            <p:column headerText="CASE's VALUE">
-                                <h:outputText value="#{caseObj.value}" />
-                            </p:column>
-                            <p:column headerText="Similarity%">
-                                <h:outputText value="#{caseObj.similarity}" />
-                            </p:column>
-                        </p:dataTable>
-
-            
+            </div>
         </h:form>  
+
+
+
     </h:body>
 </html>
 

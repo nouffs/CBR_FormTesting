@@ -38,14 +38,6 @@ public class CSVReadWrite {
 
             csvWriter = new FileWriter("cases.csv", true);
 
-//csvWriter.append("CaseID");
-//csvWriter.append(",");
-//csvWriter.append("Case_Text");
-//csvWriter.append(",");
-//csvWriter.append("Description");
-//csvWriter.append(",");
-//csvWriter.append("Value");
-//csvWriter.append("\n");
             for (List<String> rowData : rows) {
                 csvWriter.append(String.join(",", rowData));
                 csvWriter.append("\n");
@@ -68,7 +60,7 @@ public class CSVReadWrite {
         // create an instance of BufferedReader
         // using try with resource, Java 7 feature to close resources
         try (BufferedReader br = Files.newBufferedReader(pathToFile,
-                StandardCharsets.US_ASCII)) {
+                StandardCharsets.UTF_8)) {
 
             // read the first line from the text file
             String line = br.readLine();
