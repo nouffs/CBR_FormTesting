@@ -24,7 +24,7 @@ public class CBR {
         List<TestCase> similarCases = new ArrayList<TestCase>();
         int lastInserted=-1;
         for (int i = 0; i < allCases.size(); i++) {
-            if (allCases.get(i).getFieldName().trim().equals(fieldName)) {
+            if (allCases.get(i).getFieldName().trim().toLowerCase().equals(fieldName.toLowerCase())) {
                 similarCases.add(allCases.get(i));
                 lastInserted++;
                 similarCases.get(lastInserted).setSimilarity(1);
@@ -33,7 +33,7 @@ public class CBR {
         }
         
         if (similarCases.size() == 0){
-           similarCases.addAll(revise(fieldName));
+           similarCases.addAll(revise(fieldName,allCases));
            
           if (similarCases.size() > 0)
               retain(similarCases, fieldName);
@@ -49,9 +49,22 @@ public class CBR {
     
     
    //Will return less similar cases
-    public static List<TestCase> revise(String fieldName) {
+    public static List<TestCase> revise(String fieldName,List<TestCase> allCases)  {
         List<TestCase> similarCases = new ArrayList<TestCase>();
+        String[] c= fieldName.split(" ");
+        int lastInserted=-1;
+        for(int j=0;j<c.length;j++){
+        for (int i = 0; i < allCases.size(); i++) {
+            if (allCases.get(i).getFieldName().trim().toLowerCase().equals(c[j].toLowerCase())) {
+                similarCases.add(allCases.get(i));
+                lastInserted++;
+                similarCases.get(lastInserted).setSimilarity(0.5);
+            }
+        }
+
+        }    
         
+                
         
         return similarCases;
     }
