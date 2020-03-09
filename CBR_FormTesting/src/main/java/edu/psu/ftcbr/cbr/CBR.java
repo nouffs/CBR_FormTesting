@@ -51,7 +51,7 @@ public class CBR {
    //Will return less similar cases
     public static List<TestCase> revise(String fieldName,List<TestCase> allCases)  {
         List<TestCase> similarCases = new ArrayList<TestCase>();
-        String[] c= fieldName.split(" ");
+        String[] c= fieldName.split("[_ ]");
         int lastInserted=-1;
         for(int j=0;j<c.length;j++){
         for (int i = 0; i < allCases.size(); i++) {
@@ -60,11 +60,32 @@ public class CBR {
                 lastInserted++;
                 similarCases.get(lastInserted).setSimilarity(0.5);
             }
+        
+          
         }
+        
+     
+        
+        
+        
 
         }    
-        
-                
+        //If no matches were found, then try to check if the entered fieldName contains a value from the repository
+              if(similarCases.size() ==0){
+                  
+                  for (int i = 0; i < allCases.size(); i++) {
+                    
+          
+             if (fieldName.toLowerCase().contains(allCases.get(i).getFieldName().toLowerCase())) {
+                similarCases.add(allCases.get(i));
+                lastInserted++;
+                similarCases.get(lastInserted).setSimilarity(0.5);
+            }
+          
+          
+       }
+        }
+             
         
         return similarCases;
     }
