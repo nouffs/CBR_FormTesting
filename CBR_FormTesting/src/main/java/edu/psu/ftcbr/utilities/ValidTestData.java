@@ -5,21 +5,30 @@
  */
 package edu.psu.ftcbr.utilities;
 
+import java.util.Random;
+
 /**
  *
  * @author abtsambdallh
  */
 public class ValidTestData {
-    
+   
     public String getValidTestData(String fieldName){
         fieldName = fieldName.toLowerCase();
+        // initialize a Random object somewhere; you should only need one
+        Random random = new Random();
+        // generate a random integer from 0 to 899, then add 100
+        int x = random.nextInt(900) + 100;
+        // create new email
+        String email = "test"+x+"@test.test";
+        
     switch(fieldName){
         case "username":
             return "TestName";
         case "name":
             return "TestName";
         case "email":
-            return "test@test.test";
+            return email;
         case "password":
             return "password1234";
         case "id":
