@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Field {
  private String name;
+  private String id;
+  private boolean required;
+          
+  //FOR SUMMARY
  private String mandatory;
  private String optional;
  private String letters;
@@ -122,6 +126,34 @@ public class Field {
      */
     public void setTestCases(List<TestCase> testCases) {
         this.testCases = testCases;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the required
+     */
+    public boolean isRequired() {
+        return required;
+    }
+
+    /**
+     * @param required the required to set
+     */
+    public void setRequired(boolean required) {
+        this.required = required;
     }
 
 

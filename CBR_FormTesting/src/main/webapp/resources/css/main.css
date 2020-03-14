@@ -8,155 +8,155 @@
 
 
 body {
-  background-color: lighten(#ccc, 10%);
-  font-size: 100%;
-  
+    background-color: lighten(#ccc, 10%);
+    font-size: 100%;
+
 }
 
 .container {  
-  max-width: 910px;
-  min-width: 324px;
-  margin: 50px auto 0px;
-  /*background-color: $white;*/
+    max-width: 910px;
+    min-width: 324px;
+    margin: 50px auto 0px;
+    /*background-color: $white;*/
 
 }
 .row {
-  width: 100%;
-  margin: 0 0 1em 0;
-  padding: 0 2.5em;
-  &.header {
-    padding: 1.5em 2.5em;
-    border-bottom: 1px solid #ccc; 
-    background: url(https://images2.imgbox.com/a5/2e/m3lRbCCA_o.jpg) left -80px;
-    color: #fff;
-  }
-  &.body {
-    padding: .5em 2.5em 1em;
-  }
+    width: 100%;
+    margin: 0 0 1em 0;
+    padding: 0 2.5em;
+    &.header {
+        padding: 1.5em 2.5em;
+        border-bottom: 1px solid #ccc; 
+        background: url(https://images2.imgbox.com/a5/2e/m3lRbCCA_o.jpg) left -80px;
+        color: #fff;
+    }
+    &.body {
+        padding: .5em 2.5em 1em;
+    }
 }
 .pull-right {
-  float: right; 
+    float: right; 
 }
 h1 {
     color:#191970;
-  display: inline-block;
-  font-weight: 100;
-  font-size: pxtoem(45, 16);
-  border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
-  margin: 0 0 0.1em 0;
-  padding: 0 0 0.4em 0;
-  font-family: "Arial Black", Gadget, sans-serif;
+    display: inline-block;
+    font-weight: 100;
+    font-size: pxtoem(45, 16);
+    border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
+    margin: 0 0 0.1em 0;
+    padding: 0 0 0.4em 0;
+    font-family: "Arial Black", Gadget, sans-serif;
 }
 
 
 
 
 form {
-  max-width: 100%;
-  display: block;
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    li {
-      margin: 0 0 0.25em 0; 
-      clear: both;
-      display: inline-block;
-      width: 100%;
-      &:last-child {
-          margin: 0;    
-        }
-        p {
-          margin: 0;
-          padding: 0;
-          float: left;
-          &.right {
-            float: right;
-          }
-        }     
-   
-       
-    }
-  }
-  label {
+    max-width: 100%;
     display: block;
-    margin: 0 0 0.5em 0;
-    color: #4f6fad;
-    font-size: pxtoem(16, 16);
-  }
-  input {
-    margin: 0 0 0.5em 0;
-    border: 1px solid #ccc;
-    padding: 16px 10px;
-    color: #555;
-    font-size: pxtoem(16, 16);
-  }
-  textarea {
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-    width: 100%;
-    color: #555;
-  }
-  small {
-    color: #4f6fad;
-    margin: 0 0 0 0.5em;
-  }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            margin: 0 0 0.25em 0; 
+            clear: both;
+            display: inline-block;
+            width: 100%;
+            &:last-child {
+                margin: 0;    
+            }
+            p {
+                margin: 0;
+                padding: 0;
+                float: left;
+                &.right {
+                    float: right;
+                }
+            }     
+
+
+        }
+    }
+    label {
+        display: block;
+        margin: 0 0 0.5em 0;
+        color: #4f6fad;
+        font-size: pxtoem(16, 16);
+    }
+    input {
+        margin: 0 0 0.5em 0;
+        border: 1px solid #ccc;
+        padding: 16px 10px;
+        color: #555;
+        font-size: pxtoem(16, 16);
+    }
+    textarea {
+        border: 1px solid #ccc;
+        padding: 6px 10px;
+        width: 100%;
+        color: #555;
+    }
+    small {
+        color: #4f6fad;
+        margin: 0 0 0 0.5em;
+    }
 }
 
 
 
 @media only screen and (max-width:480px) {
-  .pull-right {
-    float: none; 
-  }
-  input {
-    width: 100%; 
-  }
-  label {
-    width: 100%;
-    display: inline-block;
-    float: left;
-    clear: both;
-  }
-  li, p {
-   width: 100%; 
-  }
-  input.btn {
-   margin: 1.5em 0 0.5em; 
-  }
- 
-  h3 {
-    font-size: pxtoem(18, 16)
-  }
-  li small {
-   display: none; 
-  }
+    .pull-right {
+        float: none; 
+    }
+    input {
+        width: 100%; 
+    }
+    label {
+        width: 100%;
+        display: inline-block;
+        float: left;
+        clear: both;
+    }
+    li, p {
+        width: 100%; 
+    }
+    input.btn {
+        margin: 1.5em 0 0.5em; 
+    }
+
+    h3 {
+        font-size: pxtoem(18, 16)
+    }
+    li small {
+        display: none; 
+    }
 }
 
 
-     .divider {
-          margin: 0.5em 0 0.5em 0;
-          border: 0;
-          height: 1px;
-          width: 100%;
-          display: block;
-          background-color: #4f6fad;
-          background-image: linear-gradient(to right, white, #4f6fad);
-        }
+.divider {
+    margin: 0.5em 0 0.5em 0;
+    border: 0;
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: #4f6fad;
+    background-image: linear-gradient(to right, white, #4f6fad);
+}
 
 .title {
-  padding: 60px;
-  padding-bottom:5px;
-  text-align: center;
-  color: #191970;
-  font-size: 3em;
-  font-weight: bold;
+    padding: 60px;
+    padding-bottom:5px;
+    text-align: center;
+    color: #191970;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 body{
-  background-image: url("#{resource['images/marble.jpg']}");
-  background-repeat:repeat;
-  background-size: cover;
+    background-image: url("#{resource['images/marble.jpg']}");
+    background-repeat:repeat;
+    background-size: cover;
 }
 
 #urlinput{
@@ -164,37 +164,37 @@ body{
     height: 40px;
     background: transparent;
     border-color: #191970;
-           font-family: "Arial", Gadget, sans-serif;
-    
+    font-family: "Arial", Gadget, sans-serif;
+
 }
 
- .ui-button-text{
-   
-background-color: #191970;
-   line-height: 40px; 
+.ui-button-text{
+
+    background-color: #191970;
+    line-height: 40px; 
     font-size: 20px;  
     color:white;
-           font-family: "Arial", Gadget, sans-serif;
-    
+    font-family: "Arial", Gadget, sans-serif;
+
 }
 
 
 
 .errormessage{
-      font-size: 20px; 
-     line-height: 50px;
-       font-family: "Arial", Gadget, sans-serif;
+    font-size: 20px; 
+    line-height: 50px;
+    font-family: "Arial", Gadget, sans-serif;
 }
 
- h2, h3 , h4 , h5 {
-       font-family: "Arial", Gadget, sans-serif;
-       color:#191970;
+h2, h3 , h4 , h5 {
+    font-family: "Arial", Gadget, sans-serif;
+    color:#191970;
 }
 
 
 
 #resultTitle{
-    
+
     font-size:2em;
 }
 
@@ -207,72 +207,72 @@ background-color: #191970;
 
 
 .loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 152.35px;
-  height: 167.107px;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 152.35px;
+    height: 167.107px;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 .loading .gear-sm {
-  position: absolute;
-  left: 30px;
-  top: 70px;
-  width: 38.419px;
-  height: 38.417px;
-  animation: spin2 .6s steps(10) infinite;
+    position: absolute;
+    left: 30px;
+    top: 70px;
+    width: 38.419px;
+    height: 38.417px;
+    animation: spin2 .6s steps(10) infinite;
 }
 .loading .gear-med {
-  position: absolute;
-  left: 67px;
-  top: 42px;
-  width: 50.002px;
-  height: 50.004px;
-  animation: spin .6s steps(10) infinite;
+    position: absolute;
+    left: 67px;
+    top: 42px;
+    width: 50.002px;
+    height: 50.004px;
+    animation: spin .6s steps(10) infinite;
 }
 .loading .gear-lg {
-  position: absolute;
-  width: 64.8px;
-  height: 64.801px;
-  animation: spin2 .6s steps(10) infinite;
+    position: absolute;
+    width: 64.8px;
+    height: 64.801px;
+    animation: spin2 .6s steps(10) infinite;
 }
 
 .loading .dotline {
-  position: absolute;
-  left: -7px;
-  top: 29.2px;
-  width: 78.815px;
-  height: 41.791px;
-  transform: rotate(1deg);
-  -webkit-transform: rotate(1deg);
+    position: absolute;
+    left: -7px;
+    top: 29.2px;
+    width: 78.815px;
+    height: 41.791px;
+    transform: rotate(1deg);
+    -webkit-transform: rotate(1deg);
 }
 
 .loading .dotline .move {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear alternate infinite;
 }
 
 .loading .pad {
-  position: absolute;
-  left: 70px;
-  top: -55px;
-  width: 78.815px;
-  height: 41.791px;
+    position: absolute;
+    left: 70px;
+    top: -55px;
+    width: 78.815px;
+    height: 41.791px;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
 }
 @keyframes spin2 {
-  to {
-    transform: rotate(-360deg);
-    -webkit-transform: rotate(-360deg);
-  }
+    to {
+        transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+    }
 }
 
 
@@ -283,21 +283,21 @@ background-color: #191970;
      * has an opacity of .2
      */
     0% {
-      opacity: .2;
+        opacity: .2;
     }
     /**
      * At 20% the dot is fully visible and
      * then fades out slowly
      */
     20% {
-      opacity: 1;
+        opacity: 1;
     }
     /**
      * Until it reaches an opacity of .2 and
      * the animation can start again
      */
     100% {
-      opacity: .2;
+        opacity: .2;
     }
 }
 
@@ -345,11 +345,11 @@ background-color: #191970;
 th {
     color:#737373 !important;
     font-weight: bold !important;
-  border-color: white !important;}
+    border-color: white !important;}
 
 .ui-widget-content .ui-datatable-even{
     background: #b8c1d7 !important;
-   color:#535b70 !important;
+    color:#535b70 !important;
 }
 
 .ui-widget-content .ui-datatable-odd{
@@ -360,4 +360,29 @@ th {
 
 .ui-datatable tbody td {
     border-color: white !important;
+}
+
+
+.Center { 
+
+    position: fixed; 
+
+    top: 50%; 
+    left: 50%; 
+    margin-top: -100px; 
+    margin-left: -100px; 
+} 
+
+
+
+
+
+.cp-text{ color: rgba(0,0,0,.7); text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+
+
+          position: absolute;
+          left: 35%; 
+          color:#191970;
+          bottom: 10px;
+          font-weight:bold;
 }

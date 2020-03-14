@@ -21,6 +21,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.psu.ftcbr.valueobject.Field;
+import edu.psu.ftcbr.valueobject.Form;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -28,6 +29,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Report")
 public class Report extends HttpServlet{
 	private static final long serialVersionUID = 1L;
- private ArrayList<Field> fields = new ArrayList<Field>();
+ private List<Field> fields = new ArrayList<Field>();
 
 //invoked from doGet method to create PDF through servlet 
  public Report() {
@@ -52,7 +54,8 @@ public class Report extends HttpServlet{
              try {
         
         HttpSession session = request.getSession(true);
-         fields= (ArrayList<Field>) session.getAttribute("fields");
+        Form form = (Form) session.getAttribute("form");
+         fields= form.getFields();
         //Set content type to application / pdf
         //browser will open the document only if this is set
         response.setContentType("application/pdf");
@@ -100,7 +103,7 @@ else{
     table.setHeaderRows(1);
    
        for (int j = 0 ; j < fields.get(i).getTestCases().size(); j ++){
-         insertCell(table, fields.get(i).getTestCases().get(j).getFieldName(), Element.ALIGN_LEFT, 3, bf12,false);
+         insertCell(table, fields.get(i).getTestCases().get(j).getDescription(), Element.ALIGN_LEFT, 3, bf12,false);
       insertCell(table, fields.get(i).getTestCases().get(j).isCasePassed()? "PASS":"FAIL", Element.ALIGN_CENTER, 3, fields.get(i).getTestCases().get(j).isCasePassed()? passFont:failFont ,false);
        }
    

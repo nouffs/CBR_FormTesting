@@ -12,6 +12,10 @@
 
     </h:head>
     <h:body >
+
+
+
+
         <h:form prependId="false" >
             <p:panel widgetVar="load" id="load" styleClass="customPanel" style="display:none;">
                 <div class="loading">
@@ -173,17 +177,28 @@
 
 
                 </div>
-<h1 style="padding-top:27%; padding-left: 33%;" class="testing">Your E-Form is being tested<span>.</span><span>.</span><span>.</span></h1>
+                <h1 style="padding-top:27%; padding-left: 33%;" class="testing"><h:outputText value="#{fetch.firstPage? 'Your E-Form is being fetched' : 'Your E-Form is being tested'}"></h:outputText><span>.</span><span>.</span><span>.</span></h1>
+                <br/>  
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6"  >
+                        <p:commandButton styleClass="Center"   value="Cancel"   update="@form" action="#{fetch.resetBean()}" onclick="location.reload()">
+                            <p:ajax event="click"  process="@form" ></p:ajax></p:commandButton>
+                    </div>
+                </div>
+
+
 
 
             </p:panel >
-            <h:panelGroup rendered="#{fetch.firstPage}">
-                <br/><br/><br/><br/>
-                <div class="title">
-                    <h1>Test Your E-Form</h1>
-                </div>
-            </h:panelGroup>
-
+            <p:panel widgetVar="header" styleClass="customPanel">
+                <h:panelGroup rendered="#{fetch.firstPage}">
+                    <br/><br/><br/><br/>
+                    <div class="title">
+                        <h1>Test Your E-Form</h1>
+                    </div>
+                </h:panelGroup>
+            </p:panel>
             <div class="container">
 
                 <div class="row body">
@@ -191,18 +206,19 @@
 
 
                     <!--   <li><div class="divider"></div></li> -->
+                    <p:panel widgetVar="firstPage" styleClass="customPanel">
+                        <h:panelGroup rendered="#{fetch.firstPage}">
 
-                    <h:panelGroup rendered="#{fetch.firstPage}">
-                        <div class="ui-g">
+                            <div class="ui-g">
 
-                            <div class="ui-g-12 ui-md-6 ui-lg-4">    <h:panelGroup rendered="#{fetch.showError}"  styleClass="ui-messages-error errormessage"><h:outputText value="* #{fetch.errorMessage}"></h:outputText></h:panelGroup>  </div>
-                            <div class="ui-g-12 ui-md-6 ui-lg-4">  <p:inputText   id="urlinput" placeholder="Enter your E-Form URL*" value="#{fetch.url}" /> &nbsp;&nbsp;&nbsp;
-                                <p:commandButton id="urlbutton" value="Start Testing" action="#{fetch.startTesting()}" update="@form"><p:ajax event="click" process="@form"></p:ajax></p:commandButton>  </div>
-                            <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
-                        </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-4">    <h:panelGroup rendered="#{fetch.showError}"  styleClass="ui-messages-error errormessage"><h:outputText value="* #{fetch.errorMessage}"></h:outputText></h:panelGroup>  </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-4">  <p:inputText   id="urlinput" placeholder="Enter your E-Form URL*" value="#{fetch.url}" /> &nbsp;&nbsp;&nbsp;
+                                    <p:commandButton id="urlbutton"  oncomplete="PF('load').getJQ().hide();"  value="Start Testing" action="#{fetch.startTesting()}" update="@form"><p:ajax onstart="PF('header').getJQ().hide();PF('firstPage').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form" ></p:ajax></p:commandButton>  </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                            </div>
 
-                    </h:panelGroup>
-
+                        </h:panelGroup>
+                    </p:panel>
 
 
                     <h:panelGroup  rendered="#{fetch.secondPage}" style="display:block; text-align:center">
@@ -216,28 +232,25 @@
 
                                 <div class="ui-g-12 ui-md-6 ui-lg-6"> 
                                     <p:panel  header="Form [#{fetch.url}]">  
-                                        <!--https://codepen.io/accounts/signup/user/free
-                                        https://identity.flickr.com/sign-up -->
+
 
 
 
 
 
                                         <h:panelGrid style="margin: 0 auto;" columns="2" cellpadding="10">
-                                            <h:outputLabel for="name" value="First Name:" />
-                                            <p:inputText id="name"  disabled="true"/>
-
-                                            <p:outputLabel for="@next" value="Last Name:" />
-                                            <p:inputText id="last"  disabled="true"/>
-
-                                            <p:outputLabel for="@next" value="Email:" />
-                                            <p:inputText id="email" disabled="true" />
 
 
-                                            <p:outputLabel for="@next" value="Password:" />
-                                            <p:inputText id="password" disabled="true" />
 
+                                            <ui:repeat var="field" value="#{fetch.form.fields}" varStatus="status">
+                                                <p:outputLabel for="@next" value="#{field.name}:"  />
 
+                                                <p:inputText disabled="true"  />
+                                                <br/>
+
+                                            </ui:repeat>
+                                            <br/>
+                                            <p:commandButton value="#{fetch.form.button.value}" disabled="true"></p:commandButton>
                                         </h:panelGrid>
 
 
@@ -249,7 +262,7 @@
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-6"  >
 
-                                    <p:commandButton oncomplete="PF('load').getJQ().hide();"  id="Yes" value="Yes" action="#{fetch.yes()}" update="@form"><p:ajax onstart="PF('Form').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form"></p:ajax></p:commandButton>
+                                    <p:commandButton oncomplete="PF('load').getJQ().hide();"  id="Yes" value="Yes" action="#{fetch.yes()}" update="@form" ><p:ajax onstart="PF('Form').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form"></p:ajax></p:commandButton>
                                     <p:commandButton id="No" value="No" action="#{fetch.no()}" update="@form"><p:ajax event="click" process="@form"></p:ajax></p:commandButton>
 
 
@@ -263,52 +276,76 @@
 
                     <h:panelGroup  rendered="#{fetch.thirdPage}" style="display:block; text-align:center">
                         <br/><br/> <br/><br/>
-                        <div class="confirmation">
-                            <h2 id="resultTitle">Testing has been done, below is the result summary..</h2>
-                        </div>
+
+                        <h:panelGroup rendered="#{fetch.showError}"  styleClass="ui-messages-error errormessage">
+
+                            <h:outputText value="#{fetch.errorMessage} "/>
+                          
+                          
+
+                        </h:panelGroup>
+
+  <br></br>  <br></br>
+
+                        <h:panelGroup rendered="#{not fetch.showError}"> 
+
+                            <div class="confirmation">
+                                <h2 id="resultTitle">Testing has been done, below is the result summary..</h2>
+                            </div>
 
 
 
 
-                        <p:dataTable var="field" value="#{fetch.fields}" id="fields" >
-                            <p:column headerText="Field" style="background: #e6e6e6 url('/CBR_FormTesting/javax.faces.resource/images/ui-bg_glass_75_e6e6e6_1x400.png.jsf?ln=primefaces-smoothness') 50% 50% repeat-x;color:#737373">
-                                <h:outputText style="font-weight:bold;" value="#{field.name}" />
-                            </p:column>
+                            <p:dataTable var="field" value="#{fetch.form.fields}" id="fields" rendered="false" >
+                                <p:column headerText="Field" style="background: #e6e6e6 url('/CBR_FormTesting/javax.faces.resource/images/ui-bg_glass_75_e6e6e6_1x400.png.jsf?ln=primefaces-smoothness') 50% 50% repeat-x;color:#737373">
+                                    <h:outputText style="font-weight:bold;" value="#{field.name}" />
+                                </p:column>
 
-                            <p:column headerText="Mandatory Field Test">
-                                <h:outputText value="#{field.mandatory}" />
-                            </p:column>
+                                <p:column headerText="Mandatory Field Test">
+                                    <h:outputText value="#{field.mandatory}" />
+                                </p:column>
 
-                            <p:column headerText="Optional Field Test">
-                                <h:outputText value="#{field.optional}" />
-                            </p:column>
+                                <p:column headerText="Optional Field Test">
+                                    <h:outputText value="#{field.optional}" />
+                                </p:column>
 
-                            <p:column headerText="Letters Test">
-                                <h:outputText value="#{field.letters}" />
-                            </p:column>
+                                <p:column headerText="Letters Test">
+                                    <h:outputText value="#{field.letters}" />
+                                </p:column>
 
-                            <p:column headerText="Digits Test">
-                                <h:outputText value="#{field.digits}" />
-                            </p:column>
-                            <p:column headerText="Special Chars Test">
-                                <h:outputText value="#{field.chars}" />
-                            </p:column>
-                        </p:dataTable>
+                                <p:column headerText="Digits Test">
+                                    <h:outputText value="#{field.digits}" />
+                                </p:column>
+                                <p:column headerText="Special Chars Test">
+                                    <h:outputText value="#{field.chars}" />
+                                </p:column>
+                            </p:dataTable>
 
-                        <div class="confirmation">
-                            <h2> Please find your detailed test report 
-                                <a href="Report" target="_blank">[Here]
-                                </a>
-                            </h2>
-                        </div>      
+                            <div class="confirmation">
+                                <h2> Please find your detailed test report 
+                                    <a href="Report" target="_blank">[Here]
+                                    </a>
+                                </h2>
+                            </div>      
 
 
+                         
+                        </h:panelGroup>
+   <div class="ui-g">
+                                <div class="ui-g-12 ui-md-6 ui-lg-6"  >
+                                    <p:commandButton   value="Home"  action="#{fetch.resetBean()}" onclick="location.reload()" update="@form" >
+                                        <p:ajax event="click"  process="@form"></p:ajax></p:commandButton>
+                                </div>
+                            </div>
                     </h:panelGroup>
 
 
                 </div>
             </div>
         </h:form>  
+        <p class="cp-text">
+            © Copyright 2020 Prince Sultan University. All rights reserved.
+        </p>
     </h:body>
 </html>
 

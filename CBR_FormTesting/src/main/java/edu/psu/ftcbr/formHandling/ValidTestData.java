@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.psu.ftcbr.utilities;
+package edu.psu.ftcbr.formHandling;
 
 import java.util.Random;
 
@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class ValidTestData {
    
-    public String getValidTestData(String fieldName){
+    public static String getValidTestData(String fieldName){
         fieldName = fieldName.toLowerCase();
         // initialize a Random object somewhere; you should only need one
         Random random = new Random();

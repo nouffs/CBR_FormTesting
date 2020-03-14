@@ -5,15 +5,13 @@
  */
 package edu.psu.ftcbr.bean;
 
+import edu.psu.ftcbr.cbr.CBR;
+import edu.psu.ftcbr.formHandling.FormElements;
+import edu.psu.ftcbr.formHandling.FormTesting;
 import edu.psu.ftcbr.utilities.HttpHandling;
-import edu.psu.ftcbr.valueobject.Field;
-import edu.psu.ftcbr.valueobject.TestCase;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import edu.psu.ftcbr.valueobject.Form;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -28,9 +26,7 @@ public class Fetch {
     private boolean firstPage;
     private boolean secondPage;
     private boolean thirdPage;
-    private ArrayList<Field> fields = new ArrayList<Field>();
-    private boolean showLoading;
-
+    private Form form;
     private String url;
 
     @PostConstruct
@@ -39,212 +35,7 @@ public class Fetch {
         showError = false;
         firstPage = true;
         secondPage = false;
-
-        //initializing fields [[for testing]]
-        Field field;
-        ArrayList<TestCase> testcases;
-        TestCase onecase;
-
-        field = new Field();
-        field.setName("First Name");
-        field.setMandatory(Field.Result.PASS.toString());
-        field.setOptional(Field.Result.NA.toString());
-        field.setLetters(Field.Result.PASS.toString());
-        field.setDigits(Field.Result.FAIL.toString());
-        field.setChars(Field.Result.PASS.toString());
-
-        testcases = new ArrayList<TestCase>();
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept empty values");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept space only Input ");
-        onecase.setCasePassed(false);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept line break input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept special characters input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept digits input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("verify that the field accepts letters input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        field.setTestCases(testcases);
-        /* 
-            
-            
-             Verify that the field does not accept empty values                                       Pass
-     Verify that the field does not accept space only Input                                   Fail
-     Verify that the field does not accept line break input                                   Pass
-     Verify that the field does not accept special characters input                           Pass
-     Verify that the field does not accept digits input                                       Pass
-     verify that the field accepts letters input
-         */
-
-        fields.add(field);
-        field = new Field();
-        field.setName("Last Name");
-        field.setMandatory(Field.Result.NA.toString());
-        field.setOptional(Field.Result.PASS.toString());
-        field.setLetters(Field.Result.PASS.toString());
-        field.setDigits(Field.Result.FAIL.toString());
-        field.setChars(Field.Result.PASS.toString());
-
-        testcases = new ArrayList<TestCase>();
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept empty values");
-        onecase.setCasePassed(false);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept space only Input ");
-        onecase.setCasePassed(false);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept line break input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept special characters input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept digits input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("verify that the field accepts letters input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        field.setTestCases(testcases);
-
-        /*
-              Verify that the field accepts empty values                                               Fail
-     Verify that the field does not accept space only input                                   Fail
-     Verify that the field does not accept line break input                                   Pass
-     Verify that the field does not accept special characters input                           Pass
-     Verify that the field does not accept digits input                                       Pass
-     Verify that the field accepts fetters input                                              Pass
-             
-         */
-        fields.add(field);
-        field = new Field();
-        field.setName("Email");
-        field.setMandatory(Field.Result.PASS.toString());
-        field.setOptional(Field.Result.NA.toString());
-        field.setLetters(Field.Result.PASS.toString());
-        field.setDigits(Field.Result.PASS.toString());
-        field.setChars(Field.Result.PASS.toString());
-
-        testcases = new ArrayList<TestCase>();
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept empty values");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept space only input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept line break input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field accepts emails written in a valid format (xxx@xxx.com)");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        field.setTestCases(testcases);
-
-        /*
-         
-     Verify that the field does not accept empty values                                       Pass
-     Verify that the field does not accept space only input                                   Pass
-     Verify that the field does not accept line break input                                   Pass
-     Verify that the field accepts emails written in a valid format
-                                                                                              Pass
-     "xxx@xxx"                                           Pass
-             
-         */
-        fields.add(field);
-        field = new Field();
-        field.setName("Password");
-        field.setMandatory(Field.Result.PASS.toString());
-        field.setOptional(Field.Result.NA.toString());
-        field.setLetters(Field.Result.PASS.toString());
-        field.setDigits(Field.Result.PASS.toString());
-        field.setChars(Field.Result.FAIL.toString());
-
-        testcases = new ArrayList<TestCase>();
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept empty values");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field does not accept space only input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName(" Verify that the field does not accept line break input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field accepts special characters input");
-        onecase.setCasePassed(false);
-        testcases.add(onecase);
-
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field accepts digits input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-        onecase = new TestCase();
-        onecase.setFieldName("Verify that the field accepts letters input");
-        onecase.setCasePassed(true);
-        testcases.add(onecase);
-
-        field.setTestCases(testcases);
-
-        fields.add(field);
-        /*
-         
-     Verify that the field does not accept empty values                                       Pass
-     Verify that the field does not accept space only input                                   Pass
-     Verify that the field does not accept line break input                                   Pass
-     Verify that the field accepts special characters input                                   Fall
-     Verify that the field accepts digits input                                               Pass
-     Verify that the field accepts letters input                                            Pass
-             
-         */
-
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        session.setAttribute("fields", fields);
+        errorMessage = "";
 
     }
 
@@ -328,35 +119,57 @@ public class Fetch {
             showError = true;
 
         } else {
+            FormElements instance = new FormElements();
+            form = instance.getForm(url);
 
-            firstPage = false;
-            secondPage = true;
+            if (form == null) {
+                errorMessage = "The entered URL doesn't contain a form in the accepted html format";
+                showError = true;
+            } else if (form.getButton() == null) {
+                errorMessage = "The entered URL doesn't contain a button in the accepted html format";
+                showError = true;
+            } else {
+                firstPage = false;
+                secondPage = true;
+                showError = false;
+                errorMessage = "";
+            }
         }
-    }
-
-    public void load() {
-        System.out.println("loooooaaaddding");
-        showLoading = true;
-        firstPage = false;
-        secondPage = false;
-        thirdPage = false;
-
     }
 
     public void yes() {
-        System.out.println("sleepppppppppppp");
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Fetch.class.getName()).log(Level.SEVERE, null, ex);
+
+        //CBR SECTION
+        for (int i = 0; i < form.getFields().size(); i++) {
+
+            form.getFields().get(i).setTestCases(CBR.retrieve(form.getFields().get(i).getName()));
+            System.out.println("CASES FOR THIS FIELD" + form.getFields().get(i).getName() + "SIZE: " + form.getFields().get(i).getTestCases().size());
         }
-        showLoading = false;
+
+        //TESTING SECTION
+        FormTesting test = new FormTesting();
+        test.URL = url;
+        form = test.doTest(form);
+        if (test.success) { //MAKE SURE IT TESTED SUCCESSFULLY
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session.setAttribute("form", form);
+            errorMessage = "";
+            showError = false;
+        } else {
+
+            showError = true;
+            errorMessage = "Sorry, something went wrong while testing your e-form.";
+        }
+
         firstPage = false;
         secondPage = false;
         thirdPage = true;
     }
 
     public void no() {
+        errorMessage = "";
+        showError = false;
         firstPage = true;
         secondPage = false;
         thirdPage = false;
@@ -391,31 +204,27 @@ public class Fetch {
     }
 
     /**
-     * @return the fields
+     * @return the form
      */
-    public ArrayList<Field> getFields() {
-        return fields;
+    public Form getForm() {
+        return form;
     }
 
     /**
-     * @param fields the fields to set
+     * @param form the form to set
      */
-    public void setFields(ArrayList<Field> fields) {
-        this.fields = fields;
+    public void setForm(Form form) {
+        this.form = form;
     }
 
-    /**
-     * @return the showLoading
-     */
-    public boolean isShowLoading() {
-        return showLoading;
-    }
-
-    /**
-     * @param showLoading the showLoading to set
-     */
-    public void setShowLoading(boolean showLoading) {
-        this.showLoading = showLoading;
+    public void resetBean() {
+        form = null;
+        url = "";
+        errorMessage = "";
+        firstPage = true;
+        secondPage = false;
+        thirdPage = false;
+        FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove("Fetch");
     }
 
 }

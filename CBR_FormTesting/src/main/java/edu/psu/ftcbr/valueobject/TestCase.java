@@ -5,14 +5,14 @@
  */
 package edu.psu.ftcbr.valueobject;
 
-
 public class TestCase {
+
     private String caseId;
     private String fieldName;
     private boolean casePassed;
-private String description;
-private String value;
-private double similarity;
+    private String description;
+    private String value;
+    private double similarity;
 
     /**
      * @return the casePassed
@@ -97,7 +97,5 @@ private double similarity;
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
     }
-    
-    
-    
+
 }
