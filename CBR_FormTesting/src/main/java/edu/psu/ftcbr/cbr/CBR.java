@@ -70,20 +70,21 @@ public class CBR {
         
 
         }    
-        //If no matches were found, then try to check if the entered fieldName contains a value from the repository
-              if(similarCases.size() ==0){
-                  
-                  for (int i = 0; i < allCases.size(); i++) {
-                    
-          
-             if (fieldName.toLowerCase().contains(allCases.get(i).getFieldName().toLowerCase())) {
-                similarCases.add(allCases.get(i));
-                lastInserted++;
-                similarCases.get(lastInserted).setSimilarity(0.5);
+          //If no matches were found, then try to check if the entered fieldName contains a value from the repository
+        if (similarCases.size() == 0) {
+            String[] b;
+            for (int i = 0; i < allCases.size(); i++) {
+                b = allCases.get(i).getFieldName().split("[_ ]");
+
+                for (int j = 0; j < c.length; j++) {
+                    if (fieldName.toLowerCase().equals(b[j].toLowerCase())) {
+                        similarCases.add(allCases.get(i));
+                        lastInserted++;
+                        similarCases.get(lastInserted).setSimilarity(0.5);
+                    }
+                }
+
             }
-          
-          
-       }
         }
              
         
