@@ -111,7 +111,7 @@ public class FormTesting {
 
                         String findSignUpForm = driver.findElement(By.id(form.getFormId())).getText();
                         // String errorMSG = driver.findElement(By.id("ctl00__bodyContent__valSum")).getText();
-                        System.out.println(findSignUpForm + " > SIGNUP FORM IS STILL THERE >  ***************  ******************************** FIELD: " + form.getFields().get(i).getTestCases().get(j).getValue() + " ,   DESCR: " + form.getFields().get(i).getTestCases().get(j).getDescription());
+                        System.out.println(findSignUpForm + " > SIGNUP FORM IS STILL THERE >  ***************  ******************************** FIELD: " + caseValue + " ,   DESCR: " + form.getFields().get(i).getTestCases().get(j).getDescription());
                         //FAILED
                         form.getFields().get(i).getTestCases().get(j).setCasePassed(form.getFields().get(i).getTestCases().get(j).getDescription().contains("not") ? true : false);
                     } catch (Exception e) {
