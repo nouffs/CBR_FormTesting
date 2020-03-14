@@ -76,15 +76,25 @@ public class FormTesting {
         // String status;
         System.out.println("*************** START ******************************** ");
         try {
-
+            String caseValue;
             for (int i = 0; i < form.getFields().size(); i++) {//EACH FIELD
                 if (form.getFields().get(i).isRequired()) {
                     //ASSIGN TEST CASES
                     form.getFields().get(i).getTestCases().addAll(mandatoryCases);
                 }
                 for (int j = 0; j < form.getFields().get(i).getTestCases().size(); j++) { // EACH TEST CASE
+                    //RESET DRIVER
                     reset();
-                    driver.findElement(By.id(form.getFields().get(i).getId())).sendKeys(form.getFields().get(i).getTestCases().get(j).getValue());
+                    
+                    //IF IT'S AN EMAIL, GET A UNIQUE EMAIL
+                    if (form.getFields().get(i).getName().toLowerCase().contains("email") &&
+                            form.getFields().get(i).getTestCases().get(j).getDescription().toLowerCase().contains("a valid format") ) {
+                        
+                        caseValue = ValidTestData.getValidTestData(form.getFields().get(i).getName());
+                    } else {
+                        caseValue = form.getFields().get(i).getTestCases().get(j).getValue();
+                    }
+                    driver.findElement(By.id(form.getFields().get(i).getId())).sendKeys(caseValue);
 
                     for (int n = 0; n < form.getFields().size(); n++) {// OTHER FIELDS
                         if (!form.getFields().get(i).getId().equals(form.getFields().get(n).getId())) { // IF IT'S NOT THE SAME AS THE ONE WE ARE CURRENTLY TESTING
@@ -109,7 +119,7 @@ public class FormTesting {
                         //PASSED
                         form.getFields().get(i).getTestCases().get(j).setCasePassed(form.getFields().get(i).getTestCases().get(j).getDescription().contains("not") ? false : true);
                     }
-                    
+
                     success = true;
                     driver.close();
 

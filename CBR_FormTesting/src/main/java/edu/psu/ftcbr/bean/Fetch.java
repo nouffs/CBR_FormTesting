@@ -28,7 +28,7 @@ public class Fetch {
     private boolean thirdPage;
     private Form form;
     private String url;
-
+ FormTesting test;
     @PostConstruct
     public void onPageLoad() {
 
@@ -123,10 +123,10 @@ public class Fetch {
             form = instance.getForm(url);
 
             if (form == null) {
-                errorMessage = "The entered URL doesn't contain a form in the accepted html format";
+                errorMessage = "Sorry, couldn't find any form.";
                 showError = true;
             } else if (form.getButton() == null) {
-                errorMessage = "The entered URL doesn't contain a button in the accepted html format";
+                errorMessage = "Sorry, couldn't find any form.";
                 showError = true;
             } else {
                 firstPage = false;
@@ -147,7 +147,7 @@ public class Fetch {
         }
 
         //TESTING SECTION
-        FormTesting test = new FormTesting();
+         test = new FormTesting();
         test.URL = url;
         form = test.doTest(form);
         if (test.success) { //MAKE SURE IT TESTED SUCCESSFULLY
@@ -173,6 +173,7 @@ public class Fetch {
         firstPage = true;
         secondPage = false;
         thirdPage = false;
+       
     }
 
     /**
@@ -225,6 +226,11 @@ public class Fetch {
         secondPage = false;
         thirdPage = false;
         FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove("Fetch");
+       test=null;
+       
+
+     
     }
 
+    
 }

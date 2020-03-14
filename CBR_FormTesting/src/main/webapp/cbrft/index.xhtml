@@ -280,19 +280,20 @@
                         <h:panelGroup rendered="#{fetch.showError}"  styleClass="ui-messages-error errormessage">
 
                             <h:outputText value="#{fetch.errorMessage} "/>
-                          
-                          
+
+
 
                         </h:panelGroup>
 
-  <br></br>  <br></br>
+                        <br></br>  <br></br>
 
                         <h:panelGroup rendered="#{not fetch.showError}"> 
 
+                            <h:panelGroup rendered="false">
                             <div class="confirmation">
                                 <h2 id="resultTitle">Testing has been done, below is the result summary..</h2>
                             </div>
-
+                            </h:panelGroup>
 
 
 
@@ -329,14 +330,14 @@
                             </div>      
 
 
-                         
+
                         </h:panelGroup>
-   <div class="ui-g">
-                                <div class="ui-g-12 ui-md-6 ui-lg-6"  >
-                                    <p:commandButton   value="Home"  action="#{fetch.resetBean()}" onclick="location.reload()" update="@form" >
-                                        <p:ajax event="click"  process="@form"></p:ajax></p:commandButton>
-                                </div>
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-6 ui-lg-6"  >
+                                <p:commandButton   value="Home"  action="#{fetch.resetBean()}" onclick="location.reload()" update="@form" >
+                                    <p:ajax event="click"  process="@form"></p:ajax></p:commandButton>
                             </div>
+                        </div>
                     </h:panelGroup>
 
 
