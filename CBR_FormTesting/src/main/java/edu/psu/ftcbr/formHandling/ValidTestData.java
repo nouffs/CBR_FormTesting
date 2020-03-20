@@ -20,7 +20,7 @@ public class ValidTestData {
         // generate a random integer from 0 to 899, then add 100
         int x = random.nextInt(900) + 100;
         // create new email
-        String email = x+"test@test.test";
+        String email = x+"test"+x+"@test.test";
         
     switch(fieldName){
         case "username":
