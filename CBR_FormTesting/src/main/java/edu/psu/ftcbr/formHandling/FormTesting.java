@@ -85,11 +85,11 @@ public class FormTesting {
                 for (int j = 0; j < form.getFields().get(i).getTestCases().size(); j++) { // EACH TEST CASE
                     //RESET DRIVER
                     reset();
-                    
+
                     //IF IT'S AN EMAIL, GET A UNIQUE EMAIL
-                    if (form.getFields().get(i).getName().toLowerCase().contains("email") &&
-                            form.getFields().get(i).getTestCases().get(j).getDescription().toLowerCase().contains("a valid format") ) {
-                        
+                    if (form.getFields().get(i).getName().toLowerCase().contains("email")
+                            && form.getFields().get(i).getTestCases().get(j).getDescription().toLowerCase().contains("a valid format")) {
+
                         caseValue = ValidTestData.getValidTestData(form.getFields().get(i).getName());
                     } else {
                         caseValue = form.getFields().get(i).getTestCases().get(j).getValue();
@@ -111,7 +111,7 @@ public class FormTesting {
 
                         String findSignUpForm = driver.findElement(By.id(form.getFormId())).getText();
                         // String errorMSG = driver.findElement(By.id("ctl00__bodyContent__valSum")).getText();
-                        System.out.println(findSignUpForm + " > SIGNUP FORM IS STILL THERE >  ***************  ******************************** FIELD: " + caseValue + " ,   DESCR: " + form.getFields().get(i).getTestCases().get(j).getDescription());
+                        System.out.println(" > SIGNUP FORM IS STILL THERE >  ***************  ******************************** FIELD: " + caseValue + " ,   DESCR: " + form.getFields().get(i).getTestCases().get(j).getDescription());
                         //FAILED
                         form.getFields().get(i).getTestCases().get(j).setCasePassed(form.getFields().get(i).getTestCases().get(j).getDescription().contains("not") ? true : false);
                     } catch (Exception e) {

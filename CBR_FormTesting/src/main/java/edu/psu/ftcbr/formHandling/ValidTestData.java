@@ -21,8 +21,9 @@ public class ValidTestData {
         int x = random.nextInt(900) + 100;
         // create new email
         String email = x+"test"+x+"@test.test";
-        
-    switch(fieldName){
+      String[] c= fieldName.split("[_ ]");
+      for(int i = 0 ; i < c.length;i++){
+          switch(c[i]){
         case "username":
             return "TestName";
         case "name":
@@ -37,9 +38,10 @@ public class ValidTestData {
             return "0505050505";
         case "mobile":
             return "0505050505";
-        default:
-            return "failed";
+      
        }
+      }
+    return "failed";
     
     }
     

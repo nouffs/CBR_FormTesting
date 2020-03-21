@@ -28,7 +28,9 @@ public class Fetch {
     private boolean thirdPage;
     private Form form;
     private String url;
- FormTesting test;
+    private boolean noCases;
+    FormTesting test;
+
     @PostConstruct
     public void onPageLoad() {
 
@@ -129,6 +131,19 @@ public class Fetch {
                 errorMessage = "Sorry, couldn't find any form.";
                 showError = true;
             } else {
+                //CBR SECTION
+                for (int i = 0; i < form.getFields().size(); i++) {
+
+                    form.getFields().get(i).setTestCases(CBR.retrieve(form.getFields().get(i).getName()));
+                    System.out.println("CASES FOR THIS FIELD" + form.getFields().get(i).getName() + "SIZE: " + form.getFields().get(i).getTestCases().size());
+                }
+ setNoCases(false);
+                for (int i = 0; i < form.getFields().size(); i++) {
+                    if (form.getFields().get(i).getTestCases().size() < 1) {
+                        setNoCases(true);
+                        break;
+                    }
+                }
                 firstPage = false;
                 secondPage = true;
                 showError = false;
@@ -139,15 +154,8 @@ public class Fetch {
 
     public void yes() {
 
-        //CBR SECTION
-        for (int i = 0; i < form.getFields().size(); i++) {
-
-            form.getFields().get(i).setTestCases(CBR.retrieve(form.getFields().get(i).getName()));
-            System.out.println("CASES FOR THIS FIELD" + form.getFields().get(i).getName() + "SIZE: " + form.getFields().get(i).getTestCases().size());
-        }
-
         //TESTING SECTION
-         test = new FormTesting();
+        test = new FormTesting();
         test.URL = url;
         form = test.doTest(form);
         if (test.success) { //MAKE SURE IT TESTED SUCCESSFULLY
@@ -173,7 +181,8 @@ public class Fetch {
         firstPage = true;
         secondPage = false;
         thirdPage = false;
-       
+        noCases = false;
+
     }
 
     /**
@@ -226,11 +235,22 @@ public class Fetch {
         secondPage = false;
         thirdPage = false;
         FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove("Fetch");
-       test=null;
-       
+        test = null;
 
-     
     }
 
-    
+    /**
+     * @return the noCases
+     */
+    public boolean isNoCases() {
+        return noCases;
+    }
+
+    /**
+     * @param noCases the noCases to set
+     */
+    public void setNoCases(boolean noCases) {
+        this.noCases = noCases;
+    }
+
 }

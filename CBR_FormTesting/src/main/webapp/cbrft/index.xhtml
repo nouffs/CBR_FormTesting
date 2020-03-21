@@ -261,8 +261,9 @@
                                     <br/><br/>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-6"  >
-
-                                    <p:commandButton oncomplete="PF('load').getJQ().hide();"  id="Yes" value="Yes" action="#{fetch.yes()}" update="@form" ><p:ajax onstart="PF('Form').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form"></p:ajax></p:commandButton>
+                                    <h:outputText rendered="#{fetch.noCases}" style="color:red;" value="Sorry this form isn't supported!" > </h:outputText>
+                                   <br/>
+                                    <p:commandButton oncomplete="PF('load').getJQ().hide();" disabled="#{fetch.noCases}" id="Yes" value="Yes" action="#{fetch.yes()}" update="@form" ><p:ajax onstart="PF('Form').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form"></p:ajax></p:commandButton>
                                     <p:commandButton id="No" value="No" action="#{fetch.no()}" update="@form"><p:ajax event="click" process="@form"></p:ajax></p:commandButton>
 
 
