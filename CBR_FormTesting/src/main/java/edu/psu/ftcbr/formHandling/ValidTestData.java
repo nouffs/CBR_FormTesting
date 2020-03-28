@@ -28,6 +28,8 @@ public class ValidTestData {
             return "TestName";
         case "name":
             return "TestName";
+                case "first name":
+            return "TestName";
         case "email":
             return email;
         case "password":
@@ -37,6 +39,8 @@ public class ValidTestData {
         case "mobile number":
             return "0505050505";
         case "mobile":
+            return "0505050505";
+               case "number":
             return "0505050505";
       
        }

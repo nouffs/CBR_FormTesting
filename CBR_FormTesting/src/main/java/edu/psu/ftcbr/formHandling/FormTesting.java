@@ -31,6 +31,9 @@ public class FormTesting {
     public WebDriver driver;
     public String URL;
     public List<TestCase> mandatoryCases = new ArrayList<TestCase>();
+    
+        public List<TestCase> optionalCases = new ArrayList<TestCase>();
+
     public boolean success;
 
     public FormTesting() {
@@ -49,12 +52,19 @@ public class FormTesting {
         testCase.setDescription("Verify that the field does not accept line break input");
         testCase.setValue(Keys.chord(Keys.SHIFT, Keys.ENTER));
         mandatoryCases.add(testCase);
+        
+         testCase = new TestCase();
+        testCase.setDescription("Verify that the field accepts empty value input");
+        testCase.setValue("");
+        optionalCases.add(testCase);
+        
+        
 
     }
 
     public void reset() {
 
-        System.setProperty("webdriver.chrome.driver", "C:/Users/nfq/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
 
         driver = new ChromeDriver(runInBG());
         driver.get(URL);
@@ -81,6 +91,10 @@ public class FormTesting {
                 if (form.getFields().get(i).isRequired()) {
                     //ASSIGN TEST CASES
                     form.getFields().get(i).getTestCases().addAll(mandatoryCases);
+                }
+                else {
+                                    form.getFields().get(i).getTestCases().addAll(optionalCases);
+
                 }
                 for (int j = 0; j < form.getFields().get(i).getTestCases().size(); j++) { // EACH TEST CASE
                     //RESET DRIVER

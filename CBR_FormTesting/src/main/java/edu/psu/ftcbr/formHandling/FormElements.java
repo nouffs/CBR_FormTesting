@@ -76,7 +76,7 @@ public class FormElements {
                 if (spans != null) {
                     if (spans.size() > 0) {
                         if (spans.get(0).text().equals("*")) {
-                       
+                       System.out.println("************* IT REQQQ FIELD"+field.getId());
                             field.setRequired(true);
                         } else {
                             field.setRequired(false);

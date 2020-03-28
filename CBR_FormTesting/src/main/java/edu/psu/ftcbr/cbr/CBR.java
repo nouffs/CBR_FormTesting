@@ -76,7 +76,7 @@ public class CBR {
             for (int i = 0; i < allCases.size(); i++) {
                 b = allCases.get(i).getFieldName().split("[_ ]");
 
-                for (int j = 0; j < c.length; j++) {
+                for (int j = 0; j < b.length; j++) {
                     if (fieldName.toLowerCase().equals(b[j].toLowerCase())) {
                         similarCases.add(allCases.get(i));
                         lastInserted++;
