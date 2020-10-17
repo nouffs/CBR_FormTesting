@@ -83,6 +83,13 @@ public class TestCase {
     public void setSimilarity(double similarity) {
         this.similarity = similarity;
     }
+    
+    public double calcSimilarity(String s1, String s2){
+        StringSimilarity ssm = new StringSimilarity();
+        String percentage = ssm.printSimilarity(s1, s2);
+        double d=Double.parseDouble(percentage);
+        return d;
+    }
 
     /**
      * @return the fieldName

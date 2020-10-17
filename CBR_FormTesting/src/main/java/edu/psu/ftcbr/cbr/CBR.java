@@ -7,13 +7,23 @@ package edu.psu.ftcbr.cbr;
 
 import edu.psu.ftcbr.bean.Cbrview;
 import edu.psu.ftcbr.utilities.CSVReadWrite;
+import edu.psu.ftcbr.valueobject.StringSimilarity;
 import edu.psu.ftcbr.valueobject.TestCase;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import static javax.swing.UIManager.get;
 
 public class CBR {
 
-    
+    // ********* EBTESAM: Just to test the enhanced retreival process ********//
+    /* 
+    public static void main(String[] args) {
+         retrieve("num");
+     
+     }
+    */
     //Will return similar cases
     public static List<TestCase> retrieve(String fieldName) {
 
@@ -29,14 +39,17 @@ public class CBR {
                 lastInserted++;
                 similarCases.get(lastInserted).setSimilarity(1);
             }
-
+            
+        
         }
         
         if (similarCases.size() == 0){
            similarCases.addAll(revise(fieldName,allCases));
            
-          if (similarCases.size() > 0)
-              retain(similarCases, fieldName);
+          if (similarCases.size() > 0){
+              mostSimilarCases(similarCases, fieldName);
+             // retain(similarCases, fieldName);
+          }
         }
         return similarCases;
     }
@@ -50,7 +63,40 @@ public class CBR {
     
    //Will return less similar cases
     public static List<TestCase> revise(String fieldName,List<TestCase> allCases)  {
+        String s1;
+        String s2;
         List<TestCase> similarCases = new ArrayList<TestCase>();
+        int lastInserted=-1;
+        StringSimilarity ssm = new StringSimilarity();
+        
+        for (int i = 0; i < allCases.size(); i++) {
+           //  if (allCases.get(i).getFieldName().trim().toLowerCase().contains(fieldName.toLowerCase())) {
+           s1 = allCases.get(i).getFieldName().trim().toLowerCase();
+           s2 = fieldName.toLowerCase();
+           if (ssm.calcSimilarity(s1,s2)!= 0){
+                //s1 = allCases.get(i).getFieldName().trim().toLowerCase();
+              //  s2 = fieldName.toLowerCase();
+                similarCases.add(allCases.get(i));
+                lastInserted++;
+                //Double d = similarCases.get(lastInserted).calcSimilarity(s1,s2);
+                similarCases.get(lastInserted).setSimilarity(ssm.calcSimilarity(s1,s2));
+            }
+           /*
+             else if (fieldName.toLowerCase().contains(allCases.get(i).getFieldName().trim().toLowerCase())){
+                s1 = fieldName.toLowerCase();
+                s2 = allCases.get(i).getFieldName().trim().toLowerCase();
+                similarCases.add(allCases.get(i));
+                lastInserted++;
+                Double d = similarCases.get(lastInserted).calcSimilarity(s1,s2);
+                similarCases.get(lastInserted).setSimilarity(d);
+             }
+           */
+        } 
+        
+        
+        
+        // EBTESAM: I commented the previous less similar retrieval process
+        /*
         String[] c= fieldName.split("[_ ]");
         int lastInserted=-1;
         for(int j=0;j<c.length;j++){
@@ -86,7 +132,7 @@ public class CBR {
 
             }
         }
-             
+*/
         
         return similarCases;
     }
@@ -109,5 +155,23 @@ public class CBR {
         //CSVReadWrite.insertCase(onecase);
     
     }
+    
+    public static void mostSimilarCases(List<TestCase> newSimilarCases, String fieldName){
+        List<TestCase> mostSimilarCases = new ArrayList<TestCase>();
+        TestCase tc = Collections.max(newSimilarCases, Comparator.comparingDouble(TestCase::getSimilarity));
+        System.out.println("*************************"+tc.getSimilarity()+ "******"+tc.getFieldName());
+        Double maxSimilarity = tc.getSimilarity();
+        String mostSimilarField = tc.getFieldName();
+       
+        for (int i = 0; i < newSimilarCases.size(); i++) {
+           if (newSimilarCases.get(i).getSimilarity() == maxSimilarity)
+               if (newSimilarCases.get(i).getFieldName().equals(mostSimilarField))
+                   mostSimilarCases.add(newSimilarCases.get(i));     
+        }
+        
+        if (mostSimilarCases.size() > 0)
+            retain (mostSimilarCases, fieldName);
+    }
+    
 
 }
