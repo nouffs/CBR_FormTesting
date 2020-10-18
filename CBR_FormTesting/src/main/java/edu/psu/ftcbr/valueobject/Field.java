@@ -8,27 +8,25 @@ package edu.psu.ftcbr.valueobject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Field {
- private String name;
-  private String id;
-  private boolean required;
-          
-  //FOR SUMMARY
- private String mandatory;
- private String optional;
- private String letters;
- private String digits;
- private String chars;
- private List<TestCase> testCases = new ArrayList<TestCase>();
 
- 
- 
- public enum Result {
-  PASS,
-  FAIL,
-  NA
-}
+    private String name;
+    private String id;
+    private boolean required;
+    private String type;
+    //FOR SUMMARY
+    private String mandatory;
+    private String optional;
+    private String letters;
+    private String digits;
+    private String chars;
+    private List<TestCase> testCases = new ArrayList<TestCase>();
+
+    public enum Result {
+        PASS,
+        FAIL,
+        NA
+    }
 
     /**
      * @return the name
@@ -156,10 +154,12 @@ public class Field {
         this.required = required;
     }
 
+    public String getType() {
+        return type;
+    }
 
- 
- 
+    public void setType(String type) {
+        this.type = type;
+    }
 
-
- 
 }

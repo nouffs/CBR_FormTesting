@@ -28,6 +28,7 @@ public class Fetch {
     private boolean thirdPage;
     private Form form;
     private String url;
+    private String formType= "Contact"; //default;
     private boolean noCases;
     FormTesting test;
 
@@ -38,7 +39,7 @@ public class Fetch {
         firstPage = true;
         secondPage = false;
         errorMessage = "";
-
+    
     }
 
     /**
@@ -121,8 +122,11 @@ public class Fetch {
             showError = true;
 
         } else {
-            FormElements instance = new FormElements();
-            form = instance.getForm(url);
+            FormElements instance = new FormElements();         
+            System.out.println("The form type is: " + formType);
+
+            
+            form = formType.equals("Contact")? instance.getFormNew(url) :instance.getForm(url) ;
 
             if (form == null) {
                 errorMessage = "Sorry, couldn't find any form.";
@@ -157,11 +161,9 @@ public class Fetch {
         //TESTING SECTION
         test = new FormTesting();
         test.URL = url;
-        form = test.doTest(form);
+        form = formType.equals("Contact")? test.doTestContactUs(form) : test.doTest(form) ;
         if (test.success) { //MAKE SURE IT TESTED SUCCESSFULLY
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-            session.setAttribute("form", form);
+       
             errorMessage = "";
             showError = false;
         } else {
@@ -252,5 +254,12 @@ public class Fetch {
     public void setNoCases(boolean noCases) {
         this.noCases = noCases;
     }
+  public void setFormType(String formType) {
+        this.formType = formType;
+    }
+  
+    public String getFormType() {
 
+        return this.formType;
+    }
 }

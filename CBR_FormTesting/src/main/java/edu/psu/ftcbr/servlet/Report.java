@@ -20,6 +20,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.tools.sjavac.Log;
 import edu.psu.ftcbr.valueobject.Field;
 import edu.psu.ftcbr.valueobject.Form;
 
@@ -30,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static java.util.logging.Level.WARNING;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -105,8 +108,11 @@ else{
        for (int j = 0 ; j < fields.get(i).getTestCases().size(); j ++){
          insertCell(table, fields.get(i).getTestCases().get(j).getDescription(), Element.ALIGN_LEFT, 3, bf12,false);
       insertCell(table, fields.get(i).getTestCases().get(j).isCasePassed()? "PASS":"FAIL", Element.ALIGN_CENTER, 3, fields.get(i).getTestCases().get(j).isCasePassed()? passFont:failFont ,false);
+         System.out.println("Report:::"+fields.get(i).getName() + "PASSED???" +fields.get(i).getTestCases().get(j).isCasePassed());
+      
+       Logger.getLogger(Report.class.getName()).log(WARNING, "Report:::"+fields.get(i).getName() +" CASE:: "+fields.get(i).getTestCases().get(j).getDescription()+ " PASSED???" +fields.get(i).getTestCases().get(j).isCasePassed());
+
        }
-   
           //insert an empty row
    insertCell(table, "", Element.ALIGN_LEFT, 4, bfBold12,true);  
 

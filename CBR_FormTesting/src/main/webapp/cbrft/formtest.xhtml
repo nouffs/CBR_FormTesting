@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>FORM Testing</title>
+        <a href="formtest.xhtml"></a>
+        <h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>
+
+
+
+
+
+    </h:head>
+    <h:body >
+        <h:form prependId="false" >
+
+
+            <div class="title">
+                <h1>FORM TESTING</h1>                </div>
+
+            <div class="container">
+
+                <div class="row body">
+
+
+
+                    <div class="ui-g">
+
+                        <div class="ui-g-12 ui-md-6 ui-lg-4"> * Please insert the URL that you want to test </div>
+                        <div class="ui-g-12 ui-md-8 ui-lg-8">  
+
+                            <p:inputText style="min-width:400px"   id="formType" value="#{formTestBean.url}" placeholder="PLEASE INSERT THE URL*"  /> &nbsp;&nbsp;&nbsp;
+
+                            <br/>   <br/>
+                            Form Type:
+                            <br/>
+                            <p:selectOneMenu id="trl" value="#{formTestBean.formType}" style="width:400px">
+                                <f:selectItem itemLabel="Registration" itemValue="Register" />
+                                <f:selectItem itemLabel="Contact Us" itemValue="Contact" />
+                                <p:ajax event="change"></p:ajax>
+                            </p:selectOneMenu>
+                            <br/> <br/>
+                            <p:commandButton action="#{formTestBean.fetchForm()}" value="Get Form Elements!" update="@form"><p:ajax event="click" process="@form"></p:ajax></p:commandButton>  </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                    </div>
+
+                    <br/>
+                    <hr/>
+                    
+                    <h:panelGroup rendered="#{formTestBean.form.fields.size() > 0}">
+                        <h3>FORM ELEMENTS</h3>
+                        <br/>
+                        <p:dataTable var="fieldObj" value="#{formTestBean.form.fields}" id="cases" >
+
+
+                            <p:column headerText="ID">
+                                <h:outputText value="#{fieldObj.id}" />
+                            </p:column>
+                            <p:column headerText="TYPE">
+                                <h:outputText value="#{fieldObj.type}" />
+                            </p:column>
+                            <p:column headerText="NAME">
+                                <h:outputText value="#{fieldObj.name}" />
+                            </p:column>
+                            <p:column headerText="REQUIRED">
+                                <h:outputText value="#{fieldObj.required}" />
+                            </p:column>
+
+
+                        </p:dataTable>
+
+
+                        <hr/>
+                         <h3>FORM User Interface</h3>
+                        <br/>
+                        <table>
+                            
+                        <ui:repeat var="field" value="#{formTestBean.form.fields}" varStatus="status">
+                            <tr>
+                                <td>
+                            <p:outputLabel for="@next" value="#{field.name}:"  />
+                                </td>
+                                <td>
+                            <p:inputText disabled="true" rendered="#{field.type eq 'input'}" />
+                            <h:inputTextarea disabled="true" rendered="#{field.type eq 'textarea'}"  />
+
+                            <br/>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                      
+                        </table>
+                       
+                        <p:commandButton value="#{formTestBean.form.button.value}" disabled="true"></p:commandButton>
+<hr/>
+
+<p:commandButton action="#{formTestBean.testForm()}" value="TEST" style="display:none;" ></p:commandButton>
+
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{formTestBean.showNotFound}">
+
+                        <p:outputLabel value="#{formTestBean.notFoundMessage}"></p:outputLabel>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </h:form>  
+
+
+
+    </h:body>
+</html>
+

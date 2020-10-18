@@ -26,6 +26,7 @@ public class CBR {
     */
     //Will return similar cases
     public static List<TestCase> retrieve(String fieldName) {
+        System.out.println("************************* RETRIEVE *****************");
 
         List<TestCase> allCases = new ArrayList<TestCase>();
 
@@ -81,58 +82,11 @@ public class CBR {
                 //Double d = similarCases.get(lastInserted).calcSimilarity(s1,s2);
                 similarCases.get(lastInserted).setSimilarity(ssm.calcSimilarity(s1,s2));
             }
-           /*
-             else if (fieldName.toLowerCase().contains(allCases.get(i).getFieldName().trim().toLowerCase())){
-                s1 = fieldName.toLowerCase();
-                s2 = allCases.get(i).getFieldName().trim().toLowerCase();
-                similarCases.add(allCases.get(i));
-                lastInserted++;
-                Double d = similarCases.get(lastInserted).calcSimilarity(s1,s2);
-                similarCases.get(lastInserted).setSimilarity(d);
-             }
-           */
+
         } 
         
         
-        
-        // EBTESAM: I commented the previous less similar retrieval process
-        /*
-        String[] c= fieldName.split("[_ ]");
-        int lastInserted=-1;
-        for(int j=0;j<c.length;j++){
-        for (int i = 0; i < allCases.size(); i++) {
-            if (allCases.get(i).getFieldName().trim().toLowerCase().equals(c[j].toLowerCase())) {
-                similarCases.add(allCases.get(i));
-                lastInserted++;
-                similarCases.get(lastInserted).setSimilarity(0.5);
-            }
-        
-          
-        }
-        
      
-        
-        
-        
-
-        }    
-          //If no matches were found, then try to check if the entered fieldName contains a value from the repository
-        if (similarCases.size() == 0) {
-            String[] b;
-            for (int i = 0; i < allCases.size(); i++) {
-                b = allCases.get(i).getFieldName().split("[_ ]");
-
-                for (int j = 0; j < b.length; j++) {
-                    if (fieldName.toLowerCase().equals(b[j].toLowerCase())) {
-                        similarCases.add(allCases.get(i));
-                        lastInserted++;
-                        similarCases.get(lastInserted).setSimilarity(0.5);
-                    }
-                }
-
-            }
-        }
-*/
         
         return similarCases;
     }

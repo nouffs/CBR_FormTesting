@@ -212,8 +212,24 @@
                             <div class="ui-g">
 
                                 <div class="ui-g-12 ui-md-6 ui-lg-4">    <h:panelGroup rendered="#{fetch.showError}"  styleClass="ui-messages-error errormessage"><h:outputText value="* #{fetch.errorMessage}"></h:outputText></h:panelGroup>  </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-4">  <p:inputText   id="urlinput" placeholder="Enter your E-Form URL*" value="#{fetch.url}" /> &nbsp;&nbsp;&nbsp;
+                                <div class="ui-g-12 ui-md-6 ui-lg-4"> 
+                                    <p:inputText   id="urlinput" placeholder="Enter your E-Form URL*" value="#{fetch.url}" /> &nbsp;&nbsp;&nbsp;
+                                    
+                                    <br/>   <br/>
+                            Form Type:
+                            <br/>
+                                </div>
+                                 <div class="ui-g-12 ui-md-6 ui-lg-4"> 
+                            <p:selectOneMenu id="trl" value="#{fetch.formType}" style="width:400px">
+                                <f:selectItem itemLabel="Registration" itemValue="Register" />
+                                <f:selectItem itemLabel="Contact Us" itemValue="Contact" />
+                                <p:ajax ></p:ajax>
+                            </p:selectOneMenu>
+                            <br/> <br/> <br/>
+                            
+                            
                                     <p:commandButton id="urlbutton"  oncomplete="PF('load').getJQ().hide();"  value="Start Testing" action="#{fetch.startTesting()}" update="@form"><p:ajax onstart="PF('header').getJQ().hide();PF('firstPage').getJQ().hide();PF('load').getJQ().show();" event="click" process="@form" ></p:ajax></p:commandButton>  </div>
+                               
                                 <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
                             </div>
 
@@ -345,7 +361,8 @@
                 </div>
             </div>
         </h:form>  
-        <p class="cp-text">
+        <p class="cp-text footer" >
+                                       
             © Copyright 2020 Prince Sultan University. All rights reserved.
         </p>
     </h:body>
