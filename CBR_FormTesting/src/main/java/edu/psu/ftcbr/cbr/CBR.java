@@ -48,7 +48,7 @@ public class CBR {
            similarCases.addAll(revise(fieldName,allCases));
            
           if (similarCases.size() > 0){
-              mostSimilarCases(similarCases, fieldName);
+           similarCases =    mostSimilarCases(similarCases, fieldName);
              // retain(similarCases, fieldName);
           }
         }
@@ -110,7 +110,7 @@ public class CBR {
     
     }
     
-    public static void mostSimilarCases(List<TestCase> newSimilarCases, String fieldName){
+    public static List<TestCase> mostSimilarCases(List<TestCase> newSimilarCases, String fieldName){
         List<TestCase> mostSimilarCases = new ArrayList<TestCase>();
         TestCase tc = Collections.max(newSimilarCases, Comparator.comparingDouble(TestCase::getSimilarity));
         System.out.println("*************************"+tc.getSimilarity()+ "******"+tc.getFieldName());
@@ -125,6 +125,8 @@ public class CBR {
         
         if (mostSimilarCases.size() > 0)
             retain (mostSimilarCases, fieldName);
+        
+        return mostSimilarCases;
     }
     
 
